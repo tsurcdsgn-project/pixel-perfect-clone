@@ -21,16 +21,18 @@ type Tone = "light" | "accent" | "dark";
 
 const toneMap: Record<Tone, { shell: string; knob: string }> = {
   light: {
-    shell: "bg-surface text-ink shadow-[0_10px_30px_rgba(0,0,0,0.10)]",
-    knob: "bg-ink text-inverse",
+    shell:
+      "bg-surface text-ink border border-[color:var(--finance-border)] shadow-[var(--shadow-sm)] hover:border-[color:var(--finance-blue-500)] hover:bg-[color:var(--finance-blue-050)]",
+    knob: "bg-[color:var(--finance-navy-950)] text-inverse",
   },
   accent: {
-    shell: "bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.42)]",
-    knob: "bg-surface text-ink",
+    shell:
+      "bg-[color:var(--finance-blue-600)] text-inverse shadow-[var(--shadow-glow)] hover:bg-[color:var(--finance-blue-700)]",
+    knob: "bg-surface text-[color:var(--finance-blue-700)]",
   },
   dark: {
-    shell: "bg-ink text-inverse shadow-[0_10px_30px_rgba(0,0,0,0.28)]",
-    knob: "bg-surface text-ink",
+    shell: "bg-[color:var(--finance-navy-950)] text-inverse shadow-[var(--shadow-md)]",
+    knob: "bg-surface text-[color:var(--finance-navy-950)]",
   },
 };
 
@@ -55,25 +57,26 @@ export function ActionButton({
       />
       <span className="label-xs whitespace-nowrap pr-1">{label}</span>
       <span
-        className={`ml-auto grid h-9 w-9 shrink-0 place-items-center rounded-full transition-transform duration-300 group-hover:rotate-45 ${t.knob}`}
+        className={`ml-auto grid h-9 w-9 shrink-0 place-items-center rounded-full transition-transform duration-[280ms] ease-[var(--ease-premium)] group-hover:translate-x-[3px] ${t.knob}`}
       >
         <ArrowIcon className="h-4 w-4" />
       </span>
     </>
   );
-  const cls = `group inline-flex items-center gap-3 rounded-full py-[7px] pl-5 pr-[7px] transition-transform duration-300 hover:-translate-y-0.5 ${t.shell} ${className}`;
+  const cls = `group inline-flex items-center gap-3 rounded-full py-[7px] pl-5 pr-[7px] transition-[transform,background-color,border-color,box-shadow] duration-[280ms] ease-[var(--ease-premium)] hover:-translate-y-px ${t.shell} ${className}`;
 
-  if (to) {
-    return (
-      <Link to={to} className={cls}>
-        {inner}
-      </Link>
-    );
-  }
   return (
-    <a href={href ?? "#"} className={cls} target={href?.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-      {inner}
-    </a>
+    <MagneticButton strength={5}>
+      {to ? (
+        <Link to={to} className={cls}>
+          {inner}
+        </Link>
+      ) : (
+        <a href={href ?? "#"} className={cls} target={href?.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+          {inner}
+        </a>
+      )}
+    </MagneticButton>
   );
 }
 
