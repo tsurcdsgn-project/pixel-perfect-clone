@@ -568,9 +568,9 @@ export function TeamSection() {
         <SectionHeading first="The Faces of" accent="Agencux" className="mt-8 text-center" />
       </Reveal>
 
-      <div className="mt-14 grid gap-5 md:grid-cols-3">
-        {TEAM.map((m, i) => (
-          <Reveal key={m.name} delay={i * 80}>
+      <CascadeCards className="mt-14 grid gap-5 md:grid-cols-3">
+        {TEAM.map((m) => (
+          <div key={m.name}>
             <div className="group relative overflow-hidden rounded-[26px] bg-muted">
               <span className="display absolute right-6 top-4 z-10 text-[64px] text-white/60">{m.n}</span>
               <img
