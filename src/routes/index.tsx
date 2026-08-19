@@ -16,6 +16,14 @@ import {
 } from "@/lib/agencux-data";
 import { ActionButton, ArrowIcon, Badge, Marquee, MetaBar, Reveal, SectionHeading } from "@/components/agencux/ui";
 import { ContactSection } from "@/components/agencux/ContactSection";
+import {
+  CascadeCards,
+  NumberReveal,
+  ParallaxMedia,
+  RevealLines,
+  RevealMedia,
+  SoftTilt,
+} from "@/motion/primitives";
 
 export const Route = createFileRoute("/")({
   head: () => ({
