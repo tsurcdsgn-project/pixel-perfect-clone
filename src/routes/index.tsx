@@ -255,7 +255,7 @@ function Impact() {
           type="button"
           aria-label="Previous impact"
           onClick={() => setI((v) => (v + IMPACT.length - 1) % IMPACT.length)}
-          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.42)] transition-transform hover:-translate-y-0.5"
+          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)] transition-transform hover:-translate-y-0.5"
         >
           ←
         </button>
@@ -284,7 +284,7 @@ function Impact() {
           type="button"
           aria-label="Next impact"
           onClick={() => setI((v) => (v + 1) % IMPACT.length)}
-          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.42)] transition-transform hover:-translate-y-0.5"
+          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)] transition-transform hover:-translate-y-0.5"
         >
           →
         </button>
@@ -424,7 +424,7 @@ function DarkBlock() {
                       <span
                         className={`grid h-14 w-14 shrink-0 place-items-center rounded-full text-[19px] font-semibold ${
                           active
-                            ? "bg-accent text-inverse shadow-[0_10px_30px_rgba(255,75,54,0.5)]"
+                            ? "bg-accent text-inverse shadow-[0_10px_30px_rgba(21,94,239,0.30)]"
                             : "bg-accent text-inverse"
                         }`}
                       >
@@ -452,7 +452,7 @@ function DarkBlock() {
                     </div>
                   </button>
                   {active ? (
-                    <span className="mt-4 ml-6 inline-block rounded-full bg-accent px-5 py-2 text-[15px] text-inverse shadow-[0_10px_30px_rgba(255,75,54,0.5)]">
+                    <span className="mt-4 ml-6 inline-block rounded-full bg-accent px-5 py-2 text-[15px] text-inverse shadow-[0_10px_30px_rgba(21,94,239,0.30)]">
                       {p.chip}
                     </span>
                   ) : null}
@@ -518,7 +518,7 @@ function DarkBlock() {
                 type="button"
                 aria-label="Next testimonial"
                 onClick={() => setT((v) => (v + 1) % TESTIMONIALS.length)}
-                className="grid h-14 w-[108px] place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.45)]"
+                className="grid h-14 w-[108px] place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)]"
               >
                 →
               </button>
