@@ -599,9 +599,9 @@ export function TeamSection() {
                 </div>
               </div>
             </div>
-          </Reveal>
+          </div>
         ))}
-      </div>
+      </CascadeCards>
     </section>
   );
 }
