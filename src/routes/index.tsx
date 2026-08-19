@@ -44,11 +44,13 @@ function Hero() {
         style={{ backgroundImage: `url(${IMG.heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="relative grid min-h-[520px] gap-6 px-5 py-7 md:min-h-[720px] md:px-9 md:py-9 lg:grid-cols-2">
-          <img
-            src={IMG.heroPhone}
-            alt="Agencux mobile case study"
+          <ParallaxMedia
+            amount={48}
             className="pointer-events-none absolute left-1/2 top-1/2 hidden w-[46%] max-w-[560px] -translate-x-[62%] -translate-y-1/2 lg:block"
-          />
+          >
+            <img src={IMG.heroPhone} alt="Agencux mobile case study" className="w-full" />
+          </ParallaxMedia>
+
 
           <div className="relative flex flex-col justify-between">
             <span className="inline-flex w-fit items-center gap-3 rounded-full bg-white/12 py-[6px] pl-[6px] pr-5 text-[15px] text-inverse backdrop-blur-md">
