@@ -71,9 +71,11 @@ function Hero() {
                 <span className="label-xs text-white/70">OUT NOW</span>
                 <p className="display mt-1 text-[26px]">Q Industrial</p>
               </div>
-              <div className="relative mt-5 w-full max-w-[390px] overflow-hidden rounded-[22px] border border-white/25">
-                <img src={IMG.heroCard} alt="Q Industrial concept" className="h-[200px] w-full object-cover" />
-              </div>
+              <SoftTilt className="relative mt-5 w-full max-w-[390px]">
+                <RevealMedia className="overflow-hidden rounded-[22px] border border-white/25">
+                  <img src={IMG.heroCard} alt="Q Industrial concept" className="h-[200px] w-full object-cover" />
+                </RevealMedia>
+              </SoftTilt>
             </div>
           </div>
 
