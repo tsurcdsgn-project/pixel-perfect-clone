@@ -241,7 +241,7 @@ function Awards() {
 
 function Impact() {
   const [i, setI] = useState(0);
-  const item = IMPACT[i];
+  const item = IMPACT[i]!;
   return (
     <section className="page relative py-16 md:py-24">
       <img
@@ -339,7 +339,7 @@ function WorkGrid({ items }: { items: typeof WORKS }) {
 function DarkBlock() {
   const [open, setOpen] = useState(0);
   const [t, setT] = useState(0);
-  const tm = TESTIMONIALS[t];
+  const tm = TESTIMONIALS[t]!;
 
   return (
     <section className="page">

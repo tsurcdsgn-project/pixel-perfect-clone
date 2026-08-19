@@ -17,7 +17,7 @@ export function Footer() {
         <div>
           <div className="max-w-[420px] overflow-hidden rounded-[24px]">
             <img
-              src={WORKS[1].image}
+              src={WORKS[1]!.image}
               alt="Agencux selected project"
               loading="lazy"
               className="h-[220px] w-full object-cover"

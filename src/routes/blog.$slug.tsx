@@ -17,9 +17,9 @@ export const Route = createFileRoute("/blog/$slug")({
     return {
       meta: [
         { title: `${post.title} — Agencux Blog` },
-        { name: "description", content: post.body[0].slice(0, 150) },
+        { name: "description", content: (post.body[0] ?? "").slice(0, 150) },
         { property: "og:title", content: `${post.title} — Agencux Blog` },
-        { property: "og:description", content: post.body[0].slice(0, 150) },
+        { property: "og:description", content: (post.body[0] ?? "").slice(0, 150) },
         { property: "og:image", content: post.image },
         { name: "twitter:image", content: post.image },
       ],
