@@ -16,6 +16,14 @@ import {
 } from "@/lib/agencux-data";
 import { ActionButton, ArrowIcon, Badge, Marquee, MetaBar, Reveal, SectionHeading } from "@/components/agencux/ui";
 import { ContactSection } from "@/components/agencux/ContactSection";
+import {
+  CascadeCards,
+  NumberReveal,
+  ParallaxMedia,
+  RevealLines,
+  RevealMedia,
+  SoftTilt,
+} from "@/motion/primitives";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,11 +52,13 @@ function Hero() {
         style={{ backgroundImage: `url(${IMG.heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="relative grid min-h-[520px] gap-6 px-5 py-7 md:min-h-[720px] md:px-9 md:py-9 lg:grid-cols-2">
-          <img
-            src={IMG.heroPhone}
-            alt="Agencux mobile case study"
+          <ParallaxMedia
+            amount={48}
             className="pointer-events-none absolute left-1/2 top-1/2 hidden w-[46%] max-w-[560px] -translate-x-[62%] -translate-y-1/2 lg:block"
-          />
+          >
+            <img src={IMG.heroPhone} alt="Agencux mobile case study" className="w-full" />
+          </ParallaxMedia>
+
 
           <div className="relative flex flex-col justify-between">
             <span className="inline-flex w-fit items-center gap-3 rounded-full bg-white/12 py-[6px] pl-[6px] pr-5 text-[15px] text-inverse backdrop-blur-md">
@@ -69,9 +79,11 @@ function Hero() {
                 <span className="label-xs text-white/70">OUT NOW</span>
                 <p className="display mt-1 text-[26px]">Q Industrial</p>
               </div>
-              <div className="relative mt-5 w-full max-w-[390px] overflow-hidden rounded-[22px] border border-white/25">
-                <img src={IMG.heroCard} alt="Q Industrial concept" className="h-[200px] w-full object-cover" />
-              </div>
+              <SoftTilt className="relative mt-5 w-full max-w-[390px]">
+                <RevealMedia className="overflow-hidden rounded-[22px] border border-white/25">
+                  <img src={IMG.heroCard} alt="Q Industrial concept" className="h-[200px] w-full object-cover" />
+                </RevealMedia>
+              </SoftTilt>
             </div>
           </div>
 
@@ -85,14 +97,17 @@ function Hero() {
             </div>
 
             <div className="mt-10 w-full lg:mt-0">
-              <h1 className="display text-[clamp(58px,10vw,140px)] font-bold leading-[0.88] tracking-[-0.045em] lg:text-right">
-                <span className="relative inline-block">
-                  PURE
-                  <sup className="absolute -right-12 top-1 text-[clamp(14px,1.6vw,24px)] font-semibold">('25)</sup>
-                </span>
-                <br />
-                DESIGN
-              </h1>
+              <RevealLines
+                as="h1"
+                className="display text-[clamp(58px,10vw,140px)] font-bold leading-[0.88] tracking-[-0.045em] lg:text-right"
+                lines={[
+                  <span className="relative inline-block" key="l1">
+                    PURE
+                    <sup className="absolute -right-12 top-1 text-[clamp(14px,1.6vw,24px)] font-semibold">('25)</sup>
+                  </span>,
+                  "DESIGN",
+                ]}
+              />
 
               <div className="mt-8 max-w-[330px] lg:ml-auto lg:text-left">
                 <span className="flex items-center gap-3 text-[16px] lg:justify-start">
@@ -244,18 +259,18 @@ function Impact() {
   const item = IMPACT[i]!;
   return (
     <section className="page relative py-16 md:py-24">
-      <img
-        src={IMG.earth}
-        alt=""
-        aria-hidden="true"
+      <ParallaxMedia
+        amount={36}
         className="pointer-events-none absolute left-0 top-1/2 w-full -translate-y-1/2 opacity-60"
-      />
+      >
+        <img src={IMG.earth} alt="" aria-hidden="true" className="w-full" />
+      </ParallaxMedia>
       <Reveal className="relative flex items-center justify-center gap-4 md:gap-10">
         <button
           type="button"
           aria-label="Previous impact"
           onClick={() => setI((v) => (v + IMPACT.length - 1) % IMPACT.length)}
-          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.42)] transition-transform hover:-translate-y-0.5"
+          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)] transition-transform hover:-translate-y-0.5"
         >
           ←
         </button>
@@ -272,7 +287,12 @@ function Impact() {
           >
             Our Impact
           </Badge>
-          <p className="display mt-6 text-[clamp(62px,10vw,120px)] text-accent">{item.value}</p>
+          <NumberReveal
+            key={item.value}
+            value={parseInt(item.value, 10)}
+            suffix="+"
+            className="display mt-6 block text-[clamp(62px,10vw,120px)] text-[color:var(--finance-blue-500)] tabular-nums"
+          />
           <p className="mt-4 max-w-[430px] text-[clamp(18px,2.2vw,26px)] leading-[1.25] text-white/80">{item.text}</p>
           <div className="mt-8 flex justify-end gap-3">
             <img src={IMG.impactA} alt="" className="h-[86px] w-[86px] rounded-2xl object-cover" />
@@ -284,7 +304,7 @@ function Impact() {
           type="button"
           aria-label="Next impact"
           onClick={() => setI((v) => (v + 1) % IMPACT.length)}
-          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.42)] transition-transform hover:-translate-y-0.5"
+          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)] transition-transform hover:-translate-y-0.5"
         >
           →
         </button>
@@ -312,7 +332,7 @@ function WorkGrid({ items }: { items: typeof WORKS }) {
   return (
     <div className="grid gap-5 md:grid-cols-2">
       {items.map((w, i) => (
-        <Reveal key={w.slug} delay={i * 60} className={w.span === "full" ? "md:col-span-2" : ""}>
+        <RevealMedia key={w.slug} delay={i * 0.06} className={w.span === "full" ? "md:col-span-2" : ""}>
           <Link to="/work/$slug" params={{ slug: w.slug }} className="group block h-full">
             <div className="relative h-full overflow-hidden rounded-[26px]">
               <img
@@ -330,7 +350,7 @@ function WorkGrid({ items }: { items: typeof WORKS }) {
               </div>
             </div>
           </Link>
-        </Reveal>
+        </RevealMedia>
       ))}
     </div>
   );
@@ -424,7 +444,7 @@ function DarkBlock() {
                       <span
                         className={`grid h-14 w-14 shrink-0 place-items-center rounded-full text-[19px] font-semibold ${
                           active
-                            ? "bg-accent text-inverse shadow-[0_10px_30px_rgba(255,75,54,0.5)]"
+                            ? "bg-accent text-inverse shadow-[0_10px_30px_rgba(21,94,239,0.30)]"
                             : "bg-accent text-inverse"
                         }`}
                       >
@@ -452,7 +472,7 @@ function DarkBlock() {
                     </div>
                   </button>
                   {active ? (
-                    <span className="mt-4 ml-6 inline-block rounded-full bg-accent px-5 py-2 text-[15px] text-inverse shadow-[0_10px_30px_rgba(255,75,54,0.5)]">
+                    <span className="mt-4 ml-6 inline-block rounded-full bg-accent px-5 py-2 text-[15px] text-inverse shadow-[0_10px_30px_rgba(21,94,239,0.30)]">
                       {p.chip}
                     </span>
                   ) : null}
@@ -518,7 +538,7 @@ function DarkBlock() {
                 type="button"
                 aria-label="Next testimonial"
                 onClick={() => setT((v) => (v + 1) % TESTIMONIALS.length)}
-                className="grid h-14 w-[108px] place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.45)]"
+                className="grid h-14 w-[108px] place-items-center rounded-full bg-accent text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)]"
               >
                 →
               </button>
@@ -548,9 +568,9 @@ export function TeamSection() {
         <SectionHeading first="The Faces of" accent="Agencux" className="mt-8 text-center" />
       </Reveal>
 
-      <div className="mt-14 grid gap-5 md:grid-cols-3">
-        {TEAM.map((m, i) => (
-          <Reveal key={m.name} delay={i * 80}>
+      <CascadeCards className="mt-14 grid gap-5 md:grid-cols-3">
+        {TEAM.map((m) => (
+          <div key={m.name}>
             <div className="group relative overflow-hidden rounded-[26px] bg-muted">
               <span className="display absolute right-6 top-4 z-10 text-[64px] text-white/60">{m.n}</span>
               <img
@@ -579,9 +599,9 @@ export function TeamSection() {
                 </div>
               </div>
             </div>
-          </Reveal>
+          </div>
         ))}
-      </div>
+      </CascadeCards>
     </section>
   );
 }

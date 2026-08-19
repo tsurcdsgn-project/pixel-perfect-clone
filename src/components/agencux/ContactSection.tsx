@@ -59,7 +59,7 @@ export function ContactSection() {
               </div>
               <button
                 type="submit"
-                className="group inline-flex items-center gap-3 rounded-full bg-accent py-[7px] pl-5 pr-[7px] text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.45)] transition-transform duration-300 hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-3 rounded-full bg-accent py-[7px] pl-5 pr-[7px] text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)] transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <span className="h-[7px] w-[7px] rounded-full bg-inverse" />
                 <span className="label-xs">{sent ? "REQUEST SENT" : "SEND REQUEST"}</span>

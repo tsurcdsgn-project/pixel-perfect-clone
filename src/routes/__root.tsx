@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/agencux/Header";
 import { Footer } from "../components/agencux/Footer";
+import { MotionRuntime, ScrollProgress } from "../motion/MotionRuntime";
 
 
 function NotFoundComponent() {
@@ -134,13 +135,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-
+      <MotionRuntime>
+        <ScrollProgress />
+        <Header />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </MotionRuntime>
     </QueryClientProvider>
   );
 }

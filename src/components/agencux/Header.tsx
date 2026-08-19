@@ -55,7 +55,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             to="/contact"
-            className="group hidden items-center gap-3 rounded-full bg-accent py-[7px] pl-5 pr-[7px] text-inverse shadow-[0_10px_34px_rgba(255,75,54,0.42)] transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
+            className="group hidden items-center gap-3 rounded-full bg-accent py-[7px] pl-5 pr-[7px] text-inverse shadow-[0_10px_34px_rgba(21,94,239,0.30)] transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
           >
             <span className="h-[7px] w-[7px] rounded-full bg-inverse" />
             <span className="label-xs">CONTACT US</span>
