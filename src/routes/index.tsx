@@ -259,12 +259,12 @@ function Impact() {
   const item = IMPACT[i]!;
   return (
     <section className="page relative py-16 md:py-24">
-      <img
-        src={IMG.earth}
-        alt=""
-        aria-hidden="true"
+      <ParallaxMedia
+        amount={36}
         className="pointer-events-none absolute left-0 top-1/2 w-full -translate-y-1/2 opacity-60"
-      />
+      >
+        <img src={IMG.earth} alt="" aria-hidden="true" className="w-full" />
+      </ParallaxMedia>
       <Reveal className="relative flex items-center justify-center gap-4 md:gap-10">
         <button
           type="button"
