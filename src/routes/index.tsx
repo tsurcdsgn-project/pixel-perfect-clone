@@ -332,7 +332,7 @@ function WorkGrid({ items }: { items: typeof WORKS }) {
   return (
     <div className="grid gap-5 md:grid-cols-2">
       {items.map((w, i) => (
-        <Reveal key={w.slug} delay={i * 60} className={w.span === "full" ? "md:col-span-2" : ""}>
+        <RevealMedia key={w.slug} delay={i * 0.06} className={w.span === "full" ? "md:col-span-2" : ""}>
           <Link to="/work/$slug" params={{ slug: w.slug }} className="group block h-full">
             <div className="relative h-full overflow-hidden rounded-[26px]">
               <img
