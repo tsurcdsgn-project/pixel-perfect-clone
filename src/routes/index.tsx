@@ -350,7 +350,7 @@ function WorkGrid({ items }: { items: typeof WORKS }) {
               </div>
             </div>
           </Link>
-        </Reveal>
+        </RevealMedia>
       ))}
     </div>
   );
