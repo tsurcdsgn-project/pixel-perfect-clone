@@ -239,3 +239,22 @@
     animation: none;
   }
 }
+
+@utility section-navy {
+  background-color: var(--finance-navy-950);
+  color: #ffffff;
+}
+
+/* Velocity-responsive ticker: base speed modulated max ±25%. */
+.agx-marquee-track {
+  animation-duration: calc(
+    var(--agx-duration, 30s) * (1 - clamp(-0.25, calc(var(--scroll-v) * 0.25), 0.25))
+  );
+  transition: animation-duration 200ms linear;
+}
+
+@media (max-width: 767px) {
+  .agx-marquee-track {
+    animation-duration: calc(var(--agx-duration, 30s) * 1.35);
+  }
+}
