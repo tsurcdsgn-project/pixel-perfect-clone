@@ -89,14 +89,17 @@ function Hero() {
             </div>
 
             <div className="mt-10 w-full lg:mt-0">
-              <h1 className="display text-[clamp(58px,10vw,140px)] font-bold leading-[0.88] tracking-[-0.045em] lg:text-right">
-                <span className="relative inline-block">
-                  PURE
-                  <sup className="absolute -right-12 top-1 text-[clamp(14px,1.6vw,24px)] font-semibold">('25)</sup>
-                </span>
-                <br />
-                DESIGN
-              </h1>
+              <RevealLines
+                as="h1"
+                className="display text-[clamp(58px,10vw,140px)] font-bold leading-[0.88] tracking-[-0.045em] lg:text-right"
+                lines={[
+                  <span className="relative inline-block" key="l1">
+                    PURE
+                    <sup className="absolute -right-12 top-1 text-[clamp(14px,1.6vw,24px)] font-semibold">('25)</sup>
+                  </span>,
+                  "DESIGN",
+                ]}
+              />
 
               <div className="mt-8 max-w-[330px] lg:ml-auto lg:text-left">
                 <span className="flex items-center gap-3 text-[16px] lg:justify-start">
