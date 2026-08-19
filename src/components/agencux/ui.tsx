@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
+import { RevealBlock } from "@/motion/primitives/RevealBlock";
+import { MagneticButton } from "@/motion/primitives/MagneticButton";
 
 export function ArrowIcon({ className = "" }: { className?: string }) {
   return (
