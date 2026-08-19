@@ -37,6 +37,10 @@
   --color-ink-soft: var(--ink-soft);
   --color-ink-faint: var(--ink-faint);
   --color-inverse: var(--inverse);
+  --color-navy: var(--finance-navy-950);
+  --color-navy-soft: var(--finance-navy-900);
+  --color-trust: var(--finance-blue-600);
+  --color-positive: var(--finance-positive);
   --color-destructive: oklch(0.577 0.245 27.325);
   --color-destructive-foreground: var(--inverse);
   --color-border: var(--line);
