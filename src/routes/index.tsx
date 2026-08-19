@@ -287,7 +287,12 @@ function Impact() {
           >
             Our Impact
           </Badge>
-          <p className="display mt-6 text-[clamp(62px,10vw,120px)] text-accent">{item.value}</p>
+          <NumberReveal
+            key={item.value}
+            value={parseInt(item.value, 10)}
+            suffix="+"
+            className="display mt-6 block text-[clamp(62px,10vw,120px)] text-[color:var(--finance-blue-500)] tabular-nums"
+          />
           <p className="mt-4 max-w-[430px] text-[clamp(18px,2.2vw,26px)] leading-[1.25] text-white/80">{item.text}</p>
           <div className="mt-8 flex justify-end gap-3">
             <img src={IMG.impactA} alt="" className="h-[86px] w-[86px] rounded-2xl object-cover" />
