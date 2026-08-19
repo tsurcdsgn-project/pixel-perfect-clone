@@ -47,24 +47,65 @@
   --font-sans: "Outfit", Arial, Helvetica, sans-serif;
   --font-mono-ui: "Space Grotesk", "Outfit", Arial, sans-serif;
 
-  --shadow-float: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --shadow-pill: 0 8px 24px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 10px 40px rgba(255, 75, 54, 0.45);
+  --shadow-xs: 0 1px 2px rgba(11, 31, 51, 0.05);
+  --shadow-sm: 0 8px 24px rgba(11, 31, 51, 0.07);
+  --shadow-md: 0 16px 48px rgba(11, 31, 51, 0.1);
+  --shadow-float: 0 28px 80px rgba(11, 31, 51, 0.14);
+  --shadow-pill: 0 8px 24px rgba(11, 31, 51, 0.1);
+  --shadow-glow: 0 14px 40px rgba(21, 94, 239, 0.28);
 }
 
 :root {
-  --background: #f7f7f4;
-  --surface: #ffffff;
-  --foreground: #080808;
-  --ink: #080808;
-  --ink-soft: #555552;
-  --ink-faint: #8b8b86;
-  --muted: #f1f1ee;
-  --line: rgba(8, 8, 8, 0.1);
-  --line-strong: rgba(8, 8, 8, 0.16);
-  --accent: #ff4b36;
-  --accent-deep: #f33e2c;
+  /* --- Finance trust palette --- */
+  --finance-navy-950: #0b1f33;
+  --finance-navy-900: #102a43;
+  --finance-navy-800: #123b5d;
+
+  --finance-blue-700: #165ddb;
+  --finance-blue-600: #155eef;
+  --finance-blue-500: #2f74ff;
+  --finance-blue-100: #eaf1ff;
+  --finance-blue-050: #f4f7ff;
+
+  --finance-emerald-700: #087a63;
+  --finance-emerald-600: #0f8a70;
+  --finance-emerald-100: #dff6ef;
+
+  --finance-bg: #f7f9fc;
+  --finance-surface: #ffffff;
+  --finance-surface-soft: #f1f5f9;
+
+  --finance-text-strong: #1c2b39;
+  --finance-text: #33485c;
+  --finance-text-muted: #5f6f7f;
+
+  --finance-border: #d9e2ec;
+  --finance-border-strong: #c4d0dc;
+
+  --finance-positive: #087a63;
+  --finance-warning: #b86a00;
+  --finance-negative: #c83e4d;
+  --finance-info: #165ddb;
+
+  /* --- Mapped app tokens --- */
+  --background: var(--finance-bg);
+  --surface: var(--finance-surface);
+  --foreground: var(--finance-text-strong);
+  --ink: var(--finance-text-strong);
+  --ink-soft: var(--finance-text);
+  --ink-faint: var(--finance-text-muted);
+  --muted: var(--finance-surface-soft);
+  --line: var(--finance-border);
+  --line-strong: var(--finance-border-strong);
+  --accent: var(--finance-blue-600);
+  --accent-deep: var(--finance-blue-700);
   --inverse: #ffffff;
+
+  /* --- Motion tokens --- */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --scroll-v: 0;
 
   --page-max: 1440px;
   --gutter: clamp(16px, 3vw, 52px);
