@@ -740,10 +740,9 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </Reveal>
+          </div>
         ))}
-      </div>
+      </CascadeCards>
     </section>
   );
 }
