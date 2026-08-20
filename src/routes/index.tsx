@@ -154,14 +154,18 @@ function Services() {
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={i * 80}>
               <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-                <div className="relative overflow-hidden rounded-[26px]">
-                  <img
-                    src={s.image}
-                    alt={s.title.replace("\n", " ")}
-                    loading="lazy"
-                    className="h-[320px] w-full object-cover transition-transform duration-700 hover:scale-105 md:h-[430px]"
-                  />
-                  <div className="absolute bottom-5 left-5 flex flex-wrap gap-3">
+                <div className="relative">
+                  <RevealMedia className="relative overflow-hidden rounded-[26px]">
+                    <ParallaxMedia amount={6} className="h-[320px] w-full md:h-[430px]">
+                      <img
+                        src={s.image}
+                        alt={s.title.replace("\n", " ")}
+                        loading="lazy"
+                        className="h-[360px] w-full object-cover md:h-[480px]"
+                      />
+                    </ParallaxMedia>
+                  </RevealMedia>
+                  <div className="absolute bottom-5 left-5 z-10 flex flex-wrap gap-3">
                     {s.tags.map((t) => (
                       <span
                         key={t}
