@@ -178,19 +178,26 @@ function Services() {
                 </div>
 
                 <div className="text-inverse lg:pl-10">
-                  <span className="label-xs inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
-                    {s.n}
-                  </span>
+                  <Reveal y={22}>
+                    <span className="label-xs inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+                      {s.n}
+                    </span>
+                  </Reveal>
                   <div className="mt-6 flex items-start justify-between gap-6">
-                    <h3 className="display whitespace-pre-line text-[clamp(32px,4vw,50px)]">{s.title}</h3>
+                    <RevealLines
+                      as="h3"
+                      className="display whitespace-pre-line text-[clamp(32px,4vw,50px)]"
+                      lines={s.title.split("\n")}
+                      stagger={0.09}
+                    />
                     <span className="mt-4 h-3 w-3 shrink-0 rounded-full bg-accent" />
                   </div>
-                  <div className="mt-6 border-t border-white/15 pt-5">
+                  <Reveal delay={0.14} y={26} className="mt-6 border-t border-white/15 pt-5">
                     <p className="max-w-[430px] text-[16px] leading-[1.5] text-white/70">{s.body}</p>
-                  </div>
-                  <div className="mt-8">
+                  </Reveal>
+                  <Reveal delay={0.24} y={26} className="mt-8">
                     <ActionButton label="VIEW MORE" to="/work" tone="light" />
-                  </div>
+                  </Reveal>
                 </div>
               </div>
             </Reveal>
