@@ -161,7 +161,7 @@ export function SectionHeading({
 export function Reveal({
   children,
   delay = 0,
-  y,
+  y = 48,
   className = "",
 }: {
   children: ReactNode;
