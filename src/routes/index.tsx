@@ -765,7 +765,7 @@ function GlobalReach() {
       </Reveal>
 
       <div className="relative mt-10">
-        <ParallaxMedia amount={4} className="w-full rounded-[28px]">
+        <ParallaxMedia amount={2.5} scale={1} className="w-full rounded-[28px]">
           <img src={IMG.worldMap} alt="World map" className="w-full" />
         </ParallaxMedia>
         {LOCATIONS.map((l) => (
