@@ -3,6 +3,7 @@ import { useRouterState } from "@tanstack/react-router";
 import { registerGsap, gsap, ScrollTrigger } from "./gsap";
 import { prefersReducedMotion } from "./useReducedMotion";
 import { setScrollVelocity } from "./scrollVelocity";
+import { initAutoChoreography } from "./autoChoreography";
 
 /**
  * One application-level scroll runtime.
