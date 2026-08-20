@@ -3,7 +3,6 @@ import { useRouterState } from "@tanstack/react-router";
 import { registerGsap, gsap, ScrollTrigger } from "./gsap";
 import { prefersReducedMotion } from "./useReducedMotion";
 import { setScrollVelocity } from "./scrollVelocity";
-import { initAutoChoreography } from "./autoChoreography";
 
 /**
  * One application-level scroll runtime.
@@ -56,27 +55,11 @@ export function MotionRuntime({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // Route change: attach arrival choreography, then recompute triggers after paint.
+  // Route change: reset scroll intent + recompute triggers after paint.
   useEffect(() => {
     registerGsap();
-    let dispose: (() => void) | null = null;
-    // Attach only once the document is fully loaded and hydrated, so GSAP never
-    // mutates DOM that React is still matching against the server HTML.
-    let attach = 0;
-    const run = () => {
-      attach = window.setTimeout(() => {
-        dispose = initAutoChoreography(document);
-      }, 900);
-    };
-    if (document.readyState === "complete") run();
-    else window.addEventListener("load", run, { once: true });
-    const id = window.setTimeout(() => ScrollTrigger.refresh(), 260);
-    return () => {
-      window.removeEventListener("load", run);
-      window.clearTimeout(attach);
-      window.clearTimeout(id);
-      dispose?.();
-    };
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 220);
+    return () => window.clearTimeout(id);
   }, [pathname]);
 
   // Recompute once webfonts settle so masked text is not clipped.
