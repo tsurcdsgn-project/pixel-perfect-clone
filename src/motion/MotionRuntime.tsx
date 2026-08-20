@@ -60,9 +60,12 @@ export function MotionRuntime({ children }: { children: ReactNode }) {
   useEffect(() => {
     registerGsap();
     let dispose: (() => void) | null = null;
+    // Delay past hydration so GSAP never mutates DOM React is still matching.
     const attach = window.setTimeout(() => {
-      dispose = initAutoChoreography(document);
-    }, 60);
+      requestAnimationFrame(() => {
+        dispose = initAutoChoreography(document);
+      });
+    }, 400);
     const id = window.setTimeout(() => ScrollTrigger.refresh(), 260);
     return () => {
       window.clearTimeout(attach);
