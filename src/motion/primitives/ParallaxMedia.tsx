@@ -1,18 +1,20 @@
 import { useEffect, useRef, type ReactNode } from "react";
-import { registerGsap, gsap, ScrollTrigger } from "../gsap";
-import { prefersReducedMotion } from "../useReducedMotion";
+import { registerGsap, gsap } from "../gsap";
+import { prefersReducedMotion, isTouch } from "../useReducedMotion";
 
 export function ParallaxMedia({
   children,
   className = "",
-  amount = 5,
-  scrub = 0.8,
+  /** vertical travel in percent of element height */
+  amount = 9,
+  scrub = 1,
+  scale = 1.06,
 }: {
   children: ReactNode;
   className?: string;
-  /** vertical travel in percent of element height */
   amount?: number;
   scrub?: number;
+  scale?: number;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -23,25 +25,31 @@ export function ParallaxMedia({
     if (prefersReducedMotion()) return;
     const inner = el.firstElementChild as HTMLElement | null;
     if (!inner) return;
+    const travel = isTouch() ? amount * 0.5 : amount;
     const ctx = gsap.context(() => {
+      gsap.set(inner, { willChange: "transform" });
       gsap.fromTo(
         inner,
-        { yPercent: -amount },
+        { yPercent: -travel, scale },
         {
-          yPercent: amount,
+          yPercent: travel,
+          scale,
           ease: "none",
-          scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub },
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            end: "bottom top",
+            scrub,
+            invalidateOnRefresh: true,
+          },
         },
       );
     }, el);
-    return () => {
-      ctx.revert();
-      ScrollTrigger.refresh();
-    };
-  }, [amount, scrub]);
+    return () => ctx.revert();
+  }, [amount, scrub, scale]);
 
   return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
+    <div ref={ref} data-motion-managed className={`overflow-hidden ${className}`}>
       {children}
     </div>
   );
