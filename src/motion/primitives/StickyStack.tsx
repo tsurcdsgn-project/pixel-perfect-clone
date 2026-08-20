@@ -56,7 +56,7 @@ export function StickyStack({ children, className = "" }: { children: ReactNode;
   }, [items.length]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} data-motion-managed className={className}>
       <div data-stack-viewport className="lg:relative lg:h-screen lg:overflow-visible">
         <div className="flex flex-col gap-6 lg:block lg:h-full">
           {items.map((child, i) => (

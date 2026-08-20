@@ -46,7 +46,7 @@ export function NumberReveal({
   }, [value, prefix, suffix, duration]);
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} data-motion-managed className={className}>
       {`${prefix}${value.toLocaleString("en-US")}${suffix}`}
     </span>
   );
