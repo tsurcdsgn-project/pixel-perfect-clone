@@ -192,10 +192,10 @@ function Services() {
                     />
                     <span className="mt-4 h-3 w-3 shrink-0 rounded-full bg-accent" />
                   </div>
-                  <Reveal delay={0.14} y={26} className="mt-6 border-t border-white/15 pt-5">
+                  <Reveal delay={140} y={26} className="mt-6 border-t border-white/15 pt-5">
                     <p className="max-w-[430px] text-[16px] leading-[1.5] text-white/70">{s.body}</p>
                   </Reveal>
-                  <Reveal delay={0.24} y={26} className="mt-8">
+                  <Reveal delay={240} y={26} className="mt-8">
                     <ActionButton label="VIEW MORE" to="/work" tone="light" />
                   </Reveal>
                 </div>
