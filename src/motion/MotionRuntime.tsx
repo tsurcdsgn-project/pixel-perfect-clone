@@ -66,7 +66,7 @@ export function MotionRuntime({ children }: { children: ReactNode }) {
     const run = () => {
       attach = window.setTimeout(() => {
         dispose = initAutoChoreography(document);
-      }, 120);
+      }, 900);
     };
     if (document.readyState === "complete") run();
     else window.addEventListener("load", run, { once: true });

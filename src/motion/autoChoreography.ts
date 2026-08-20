@@ -54,9 +54,12 @@ export function initAutoChoreography(root: ParentNode = document): () => void {
     groups.push(...pools);
   }
 
+  const vh = window.innerHeight;
   const ctx = gsap.context(() => {
     groups.forEach((items) => {
-      items.forEach((el, i) => {
+      // Anything already on screen when we attach stays visible — no flash.
+      const pending = items.filter((el) => el.getBoundingClientRect().top > vh * 0.92);
+      pending.forEach((el, i) => {
         gsap.set(el, { willChange: "transform, opacity" });
         gsap.fromTo(
           el,
@@ -78,7 +81,6 @@ export function initAutoChoreography(root: ParentNode = document): () => void {
             scrollTrigger: { trigger: el, start: "top 90%", once: true },
           },
         );
-      });
     });
   });
 
