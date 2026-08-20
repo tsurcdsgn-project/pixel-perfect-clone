@@ -81,6 +81,7 @@ export function initAutoChoreography(root: ParentNode = document): () => void {
             scrollTrigger: { trigger: el, start: "top 90%", once: true },
           },
         );
+      });
     });
   });
 
