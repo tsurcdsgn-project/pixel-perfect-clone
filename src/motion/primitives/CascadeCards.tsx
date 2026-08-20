@@ -4,14 +4,14 @@ import { prefersReducedMotion, isTouch } from "../useReducedMotion";
 
 /**
  * Sequential card entrance — cards approach from slightly different
- * x / y / rotation depending on index, then settle to the grid.
+ * x / y / rotation / depth depending on index, then settle to the grid.
  */
 export function CascadeCards({
   children,
   className = "",
   itemClassName = "",
-  stagger = 0.12,
-  start = "top 82%",
+  stagger = 0.14,
+  start = "top 88%",
 }: {
   children: ReactNode;
   className?: string;
@@ -39,20 +39,25 @@ export function CascadeCards({
           t,
           {
             opacity: 0,
-            y: mobile ? 44 : 58 + (i % 3) * 10,
-            x: mobile ? 0 : dir * 28,
-            rotate: mobile ? 0 : dir * 2.1,
-            scale: mobile ? 1 : 0.97,
+            y: mobile ? 48 : 74 + (i % 3) * 14,
+            x: mobile ? 0 : dir * 34,
+            rotate: mobile ? 0 : dir * 2.6,
+            rotateX: mobile ? 0 : 8,
+            scale: mobile ? 1 : 0.95,
+            filter: "blur(8px)",
           },
           {
             opacity: 1,
             y: 0,
             x: 0,
             rotate: 0,
+            rotateX: 0,
             scale: 1,
-            duration: 0.9,
-            delay: i * (mobile ? 0.07 : stagger),
+            filter: "blur(0px)",
+            duration: 1.1,
+            delay: i * (mobile ? 0.08 : stagger),
             ease: ease.premium,
+            clearProps: "filter",
             scrollTrigger: { trigger: el, start, once: true },
           },
         );
@@ -62,9 +67,14 @@ export function CascadeCards({
   }, [stagger, start, items.length]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} data-motion-managed className={className} style={{ perspective: 1200 }}>
       {items.map((child, i) => (
-        <div key={i} data-cascade-item className={itemClassName} style={{ opacity: 0 }}>
+        <div
+          key={i}
+          data-cascade-item
+          className={itemClassName}
+          style={{ opacity: 0, willChange: "transform, opacity" }}
+        >
           {child}
         </div>
       ))}
