@@ -55,11 +55,19 @@ export function MotionRuntime({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // Route change: reset scroll intent + recompute triggers after paint.
+  // Route change: attach arrival choreography, then recompute triggers after paint.
   useEffect(() => {
     registerGsap();
-    const id = window.setTimeout(() => ScrollTrigger.refresh(), 180);
-    return () => window.clearTimeout(id);
+    let dispose: (() => void) | null = null;
+    const attach = window.setTimeout(() => {
+      dispose = initAutoChoreography(document);
+    }, 60);
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 260);
+    return () => {
+      window.clearTimeout(attach);
+      window.clearTimeout(id);
+      dispose?.();
+    };
   }, [pathname]);
 
   // Recompute once webfonts settle so masked text is not clipped.
