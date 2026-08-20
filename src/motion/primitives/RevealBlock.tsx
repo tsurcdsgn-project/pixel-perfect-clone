@@ -5,10 +5,10 @@ import { prefersReducedMotion } from "../useReducedMotion";
 export function RevealBlock({
   children,
   delay = 0,
-  y = 32,
+  y = 48,
   as: Tag = "div",
   className = "",
-  start = "top 86%",
+  start = "top 88%",
 }: {
   children: ReactNode;
   delay?: number;
@@ -24,20 +24,22 @@ export function RevealBlock({
     if (!el) return;
     registerGsap();
     if (prefersReducedMotion()) {
-      gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+      gsap.set(el, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
       return;
     }
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
-        { opacity: 0, y, scale: 0.985 },
+        { opacity: 0, y, scale: 0.975, filter: "blur(8px)" },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.75,
+          filter: "blur(0px)",
+          duration: 1.05,
           delay,
-          ease: ease.reveal,
+          ease: ease.premium,
+          clearProps: "filter",
           scrollTrigger: { trigger: el, start, once: true },
         },
       );
@@ -46,7 +48,7 @@ export function RevealBlock({
   }, [delay, y, start]);
 
   return (
-    <Tag ref={ref} className={className} style={{ opacity: 0 }}>
+    <Tag ref={ref} data-motion-managed className={className} style={{ opacity: 0, willChange: "transform, opacity" }}>
       {children}
     </Tag>
   );
