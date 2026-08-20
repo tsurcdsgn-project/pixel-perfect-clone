@@ -6,7 +6,7 @@ export function RevealMedia({
   children,
   className = "",
   delay = 0,
-  start = "top 88%",
+  start = "top 90%",
 }: {
   children: ReactNode;
   className?: string;
@@ -21,7 +21,7 @@ export function RevealMedia({
     registerGsap();
     const inner = el.firstElementChild as HTMLElement | null;
     if (prefersReducedMotion()) {
-      gsap.set(el, { clipPath: "inset(0%)" });
+      gsap.set(el, { clipPath: "inset(0%)", opacity: 1 });
       if (inner) gsap.set(inner, { scale: 1, yPercent: 0 });
       return;
     }
@@ -32,18 +32,34 @@ export function RevealMedia({
       });
       tl.fromTo(
         el,
-        { clipPath: "inset(8% 0% 8% 0%)" },
-        { clipPath: "inset(0% 0% 0% 0%)", duration: 1.05, ease: ease.premium },
+        { clipPath: "inset(14% 6% 14% 6% round 24px)", opacity: 0.35, y: 34 },
+        {
+          clipPath: "inset(0% 0% 0% 0% round 0px)",
+          opacity: 1,
+          y: 0,
+          duration: 1.25,
+          ease: ease.premium,
+        },
       );
       if (inner) {
-        tl.fromTo(inner, { scale: 1.065, yPercent: 4 }, { scale: 1, yPercent: 0, duration: 1.15, ease: ease.premium }, 0);
+        tl.fromTo(
+          inner,
+          { scale: 1.12, yPercent: 6 },
+          { scale: 1, yPercent: 0, duration: 1.45, ease: ease.premium },
+          0,
+        );
       }
     }, el);
     return () => ctx.revert();
   }, [delay, start]);
 
   return (
-    <div ref={ref} className={className} style={{ clipPath: "inset(8% 0% 8% 0%)" }}>
+    <div
+      ref={ref}
+      data-motion-managed
+      className={className}
+      style={{ clipPath: "inset(14% 6% 14% 6% round 24px)", opacity: 0.35, willChange: "clip-path, transform" }}
+    >
       {children}
     </div>
   );

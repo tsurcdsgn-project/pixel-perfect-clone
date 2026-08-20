@@ -161,14 +161,17 @@ export function SectionHeading({
 export function Reveal({
   children,
   delay = 0,
+  y = 48,
   className = "",
 }: {
   children: ReactNode;
+  /** milliseconds */
   delay?: number;
+  y?: number;
   className?: string;
 }) {
   return (
-    <RevealBlock delay={delay / 1000} className={className}>
+    <RevealBlock delay={delay / 1000} y={y} className={className}>
       {children}
     </RevealBlock>
   );

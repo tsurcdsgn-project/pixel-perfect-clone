@@ -3,8 +3,8 @@ import { registerGsap, gsap, ease } from "../gsap";
 import { prefersReducedMotion } from "../useReducedMotion";
 
 /**
- * Line-mask reveal. Each child is treated as one line and rises out of a mask.
- * Never split long finance paragraphs into characters — lines only.
+ * Line-mask reveal. Each child is treated as one line and rises out of a mask
+ * with a subtle depth rotation. Never split long finance paragraphs into characters.
  */
 export function RevealLines({
   lines,
@@ -12,8 +12,8 @@ export function RevealLines({
   className = "",
   lineClassName = "",
   delay = 0,
-  stagger = 0.08,
-  start = "top 88%",
+  stagger = 0.11,
+  start = "top 90%",
 }: {
   lines: ReactNode[];
   as?: ElementType;
@@ -37,11 +37,13 @@ export function RevealLines({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         targets,
-        { yPercent: 110, opacity: 0 },
+        { yPercent: 118, opacity: 0, rotate: 2.4, scaleY: 1.06 },
         {
           yPercent: 0,
           opacity: 1,
-          duration: 0.95,
+          rotate: 0,
+          scaleY: 1,
+          duration: 1.15,
           delay,
           stagger,
           ease: ease.premium,
@@ -53,10 +55,14 @@ export function RevealLines({
   }, [delay, stagger, start]);
 
   return (
-    <Tag ref={ref} className={className}>
+    <Tag ref={ref} data-motion-managed className={className}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.06em]">
-          <span data-line-inner className={`block will-change-transform ${lineClassName}`} style={{ opacity: 0 }}>
+        <span key={i} className="block overflow-hidden pb-[0.08em]">
+          <span
+            data-line-inner
+            className={`block origin-bottom will-change-transform ${lineClassName}`}
+            style={{ opacity: 0 }}
+          >
             {line}
           </span>
         </span>

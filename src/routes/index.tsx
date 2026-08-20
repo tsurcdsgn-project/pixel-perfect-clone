@@ -152,16 +152,19 @@ function Services() {
       <div className="mt-10 overflow-hidden rounded-[40px] bg-ink px-5 py-10 md:px-10 md:py-16">
         <div className="space-y-16 md:space-y-24">
           {SERVICES.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 80}>
-              <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-                <div className="relative overflow-hidden rounded-[26px]">
-                  <img
-                    src={s.image}
-                    alt={s.title.replace("\n", " ")}
-                    loading="lazy"
-                    className="h-[320px] w-full object-cover transition-transform duration-700 hover:scale-105 md:h-[430px]"
-                  />
-                  <div className="absolute bottom-5 left-5 flex flex-wrap gap-3">
+            <div key={s.slug} className="grid gap-8 lg:grid-cols-2 lg:items-center">
+                <div className="relative">
+                  <RevealMedia className="relative overflow-hidden rounded-[26px]">
+                    <ParallaxMedia amount={6} className="h-[320px] w-full md:h-[430px]">
+                      <img
+                        src={s.image}
+                        alt={s.title.replace("\n", " ")}
+                        loading="lazy"
+                        className="h-[360px] w-full object-cover md:h-[480px]"
+                      />
+                    </ParallaxMedia>
+                  </RevealMedia>
+                  <div className="absolute bottom-5 left-5 z-10 flex flex-wrap gap-3">
                     {s.tags.map((t) => (
                       <span
                         key={t}
@@ -174,22 +177,28 @@ function Services() {
                 </div>
 
                 <div className="text-inverse lg:pl-10">
-                  <span className="label-xs inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
-                    {s.n}
-                  </span>
+                  <Reveal y={22}>
+                    <span className="label-xs inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+                      {s.n}
+                    </span>
+                  </Reveal>
                   <div className="mt-6 flex items-start justify-between gap-6">
-                    <h3 className="display whitespace-pre-line text-[clamp(32px,4vw,50px)]">{s.title}</h3>
+                    <RevealLines
+                      as="h3"
+                      className="display whitespace-pre-line text-[clamp(32px,4vw,50px)]"
+                      lines={s.title.split("\n")}
+                      stagger={0.09}
+                    />
                     <span className="mt-4 h-3 w-3 shrink-0 rounded-full bg-accent" />
                   </div>
-                  <div className="mt-6 border-t border-white/15 pt-5">
+                  <Reveal delay={140} y={26} className="mt-6 border-t border-white/15 pt-5">
                     <p className="max-w-[430px] text-[16px] leading-[1.5] text-white/70">{s.body}</p>
-                  </div>
-                  <div className="mt-8">
+                  </Reveal>
+                  <Reveal delay={240} y={26} className="mt-8">
                     <ActionButton label="VIEW MORE" to="/work" tone="light" />
-                  </div>
+                  </Reveal>
                 </div>
-              </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </div>
@@ -232,23 +241,21 @@ function Awards() {
           <SectionHeading first="Industry &" accent="Honors" className="mt-8" />
         </Reveal>
 
-        <div className="mt-12 lg:pl-[40%]">
-          {AWARDS.map((a, i) => (
-            <Reveal key={a.title} delay={i * 60}>
-              <div className="group border-b border-[color:var(--line)] py-6">
+        <CascadeCards className="mt-12 lg:pl-[40%]" stagger={0.1}>
+          {AWARDS.map((a) => (
+            <div key={a.title} className="group border-b border-[color:var(--line)] py-6">
                 <div className="flex items-center justify-between gap-6">
                   <span className="display text-[clamp(22px,2.6vw,32px)] text-ink-soft transition-colors group-hover:text-ink">
                     {a.title}
                   </span>
                   <span className="text-[17px] text-ink-faint">{a.by}</span>
                 </div>
-                <p className="mt-2 max-h-0 overflow-hidden text-[15px] text-ink-soft opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100">
-                  {a.body}
-                </p>
-              </div>
-            </Reveal>
+              <p className="mt-2 max-h-0 overflow-hidden text-[15px] text-ink-soft opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100">
+                {a.body}
+              </p>
+            </div>
           ))}
-        </div>
+        </CascadeCards>
       </div>
     </section>
   );
@@ -688,10 +695,9 @@ function Pricing() {
         <SectionHeading first="Pricing Made" accent="Simple" className="mt-8 text-center" />
       </Reveal>
 
-      <div className="mt-14 grid gap-5 lg:grid-cols-2">
-        {PRICING.map((p, i) => (
-          <Reveal key={p.name} delay={i * 80}>
-            <div className="overflow-hidden rounded-[30px] bg-ink">
+      <CascadeCards className="mt-14 grid gap-5 lg:grid-cols-2" stagger={0.16}>
+        {PRICING.map((p) => (
+          <div key={p.name} className="overflow-hidden rounded-[30px] bg-ink">
               <div
                 className={`px-7 py-9 ${
                   p.featured
@@ -734,10 +740,9 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </Reveal>
+          </div>
         ))}
-      </div>
+      </CascadeCards>
     </section>
   );
 }
@@ -760,7 +765,9 @@ function GlobalReach() {
       </Reveal>
 
       <div className="relative mt-10">
-        <img src={IMG.worldMap} alt="World map" className="w-full" />
+        <ParallaxMedia amount={2.5} scale={1} className="w-full rounded-[28px]">
+          <img src={IMG.worldMap} alt="World map" className="w-full" />
+        </ParallaxMedia>
         {LOCATIONS.map((l) => (
           <div key={l.city} className="absolute" style={{ left: `${l.x}%`, top: `${l.y}%` }}>
             <span className="flex items-center gap-2 rounded-full bg-surface py-[5px] pl-[5px] pr-4 shadow-[0_10px_28px_rgba(0,0,0,0.12)]">

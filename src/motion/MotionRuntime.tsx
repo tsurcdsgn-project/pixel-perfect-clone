@@ -58,7 +58,7 @@ export function MotionRuntime({ children }: { children: ReactNode }) {
   // Route change: reset scroll intent + recompute triggers after paint.
   useEffect(() => {
     registerGsap();
-    const id = window.setTimeout(() => ScrollTrigger.refresh(), 180);
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 220);
     return () => window.clearTimeout(id);
   }, [pathname]);
 
